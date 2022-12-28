@@ -1,0 +1,44 @@
+<%- include('../partials/header.ejs') %>
+    <br>
+    <div class="section-1">
+        <div class="container">
+            <h1 class="text-center"  >Sign Up Form</h1>
+            <div class="center-container">
+                <form action='/users' method='POST' class="mt-20">
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-dark">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>

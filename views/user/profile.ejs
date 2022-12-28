@@ -1,0 +1,116 @@
+
+<%- include('../partials/header.ejs')%>
+<div class="content"  style="margin: 50px auto;width: 95%;">
+    <div class="center-container mb-100">
+        <div class="event-heading">
+            <h4 class="dis-in-bl">Your Trades</h4>
+        </div>
+        <% if(trades.length){ %>
+            <div class="table-responsive">
+
+        <table class="table table-hover">
+            <tr  class="thead-light ">
+                <th scope="col">Phone Name</th><th></th><th></th>
+                <th scope="col">Phone Company</th><th></th><th></th>
+              <th scope="col">Status</th><th></th><th></th>
+              <th scope="col">Action</th><th></th><th></th>
+            </tr>
+            <% trades.forEach(trade => { %>
+            <tr>
+                <td><%= trade.title %></td>
+                <td></td><td></td>
+                <td><%= trade.phone_company %></td>
+                <td></td><td></td>
+                <td><%= trade.status %></td>
+                <td></td><td></td>
+                <td>
+                    <form style="float: left;">
+                        <button class="btn btn-success" type="submit" formmethod="GET" formaction="/trades/<%= trade._id %>/edit">Update</button>
+    
+                        <button class="btn btn-danger" type="submit" formmethod="POST" formaction="/trades/<%= trade._id %>?_method=DELETE">Delete</button>
+                        <% if(trade.status != 'Available' && trade.status != 'Traded'){ %>
+                            <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/trades/<%= trade._id%>/manageOffer">Manage Offer   </button>
+                        <% } %>
+                    </form>
+                </td>
+            </tr>
+            <% }); %>
+        </table>
+    </div>
+
+        <% } else { %>
+            <p style="margin: 20px auto;width: 95%;">There are no trades to display.</p>
+        <% } %>
+    </div>
+
+
+
+    <div class="center-container mb-100">
+        <div class="event-heading">
+            <h4 class="dis-in-bl">Your Offers</h4>
+        </div>
+        <% if(offerTrades.length){ %>
+            <table class="table table-hover">
+                <tr  class="thead-light ">
+                  <th>Phone Name</th><th></th><th></th>
+                  <th>Phone Company</th><th></th><th></th>
+                  <th>Status</th><th></th><th></th>
+                  <th>Action</th><th></th><th></th>
+                </tr>
+                <% offerTrades.forEach(trade => { %>
+                <tr>
+                    <td><%= trade.tradeid.title %></td>
+                    <td></td><td></td>
+                    <td><%= trade.tradeid.phone_company %></td>
+                    <td></td><td></td>
+                    <td><%= trade.tradeid.status %></td>
+                    <td></td><td></td>
+                    <td>
+                        <form style="float: left;">
+                            <button class="btn btn-danger" type="submit" formmethod="GET" formaction="/trades/<%= trade.tradeid.id %>/cancelOffer">Cancel Offer</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+            </table>
+            <% } else { %>
+                <p style="margin: 20px auto;width: 95%;">No offers</p>
+            <% } %>
+    </div>
+
+    <div class="center-container mb-100">
+        <div class="event-heading">
+            <h4 class="dis-in-bl">Your watched trades</h4>
+        </div>
+        <% if(watchTrades.length){ %>
+            <table class="table table-hover">
+                <tr  class="thead-light ">
+                  <th>Phone Name</th><th></th><th></th>
+                  <th>Phone Company</th><th></th><th></th>
+                  <th>Status</th><th></th><th></th>
+                  <th>Action</th><th></th><th></th>
+                </tr>
+                <% watchTrades.forEach(w => { %>
+                <% w.tradelist.forEach(r => {%>
+                <tr>
+                    <td><%= r.title %></td>
+                    <td></td><td></td>
+                    <td><%= r.phone_company %></td>
+                    <td></td><td></td>
+                    <td><%= r.status %></td>
+                    <td></td><td></td>
+                    <td>
+                        <form style="float: left;">
+                            <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/trades/<%= r.id%>/unfavourite">Unwatch</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+                <% }); %>
+            </table>
+            <% } else { %>
+                <p style="margin: 20px auto;width: 95%;">There are no items in watch list to display.</p>
+            <% } %>
+    </div>
+</div>
+<%- include('../partials/footer.ejs')%>

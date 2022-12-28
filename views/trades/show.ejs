@@ -1,0 +1,74 @@
+<%- include('../partials/header.ejs')%>
+    <main>
+        <br>
+        <div class="section-1">
+            <div class="container text-center">
+                <div class="media">
+                    <img class="align-self-center mr-3" src="<%= item.img_url %>" height="340" width="220"
+                        alt="Not Found"  onerror=this.src="/images/noimage.png">
+                    <div class="media-body">
+                        <h3 class="mt-0" style="text-align: left;">
+                            <%= item.title %>
+                        </h3>
+
+                        <h5 style="text-align: left;">
+                            <%= item.condition %>
+                        </h5>
+                        <h6 style="text-align: left;">
+                            <%= item.createdAt %>
+                        </h6>
+                        <% if(user!=item.host) { %>
+                            <p style="text-align: right;">
+                                Want to trade?
+                            </p>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <form>
+                                    <button class="btn btn-warning" type="submit" formmethod="POST"
+                                        formaction="/trades/<%= item._id %>/tradeitem">Trade </button>
+           
+                                </form>
+                            </div>
+
+                            <p style="text-align: right;">
+                                Add to watch list
+                            </p>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <form>
+               
+                                    <button class="btn btn-success" type="submit" formmethod="POST"
+                                        formaction="/trades/<%= item._id %>/favourite">Yes</button>
+                                    <button class="btn btn-danger" type="submit" formmethod="POST"
+                                        formaction="/trades/<%= item._id %>/unfavourite">No</button>
+                                </form>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="section-1">
+            <div class="container text-left">
+                <h1 class="heading-1">Details</h1>
+                <!-- <h1 class="heading-2">& Where to Find them? </h1> -->
+                <p class="para-1">
+                    <%= item.content %>
+                </p>
+            </div>
+        </div>
+        <div class="container text-center">
+
+            <form>
+                <% if(user==item.host) { %>
+                    <button type="submit" formmethod="GET" formaction="/trades/<%= item._id %>/edit"
+                        class="btn btn-success">Edit</button>
+                    <button type="submit" formmethod="POST" formaction="/trades/<%= item._id %>?_method=DELETE"
+                        class="btn btn-danger">Delete</button>
+                    <% } %>
+            </form>
+
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>

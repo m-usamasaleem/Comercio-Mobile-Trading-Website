@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs')%>
+    <main>
+        <br>
+        <div class="section-1">
+            <div class="container text-center">
+                <div class="row justify-content-center text-center">
+                    <% if(genres.length){ %>
+                        <% genres.forEach(genre=> { %>
+                            <div class="card" style="width: 18rem;">
+                                <img src=  "<%= `/images/${genre}.jpeg` %>"   height="230" width="30" class="card-img-top"  onerror=this.src="/images/noimage.png">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                       <b> <%= genre %> </b>
+                                    </h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <% if(trades.length){ %>
+                                        <% trades.forEach(trades=> {
+                                            if (trades.phone_company === genre) { %>
+                                            <li class="list-group-item"><a href="/trades/<%= trades._id %>">
+                                                    <%= trades.title %>
+                                                </a></li>
+                                            <% } }); } else { %>
+                                                <p>There are no phones to display.</p>
+                                                <% } %>
+
+                                </ul>
+
+                            </div>
+                            <% }); %>
+                        <% } else { %>
+                                    <h4>There are no phones to display.</h4>
+                                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>

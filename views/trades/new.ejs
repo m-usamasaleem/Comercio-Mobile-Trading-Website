@@ -1,0 +1,51 @@
+<%- include('../partials/header.ejs')%>
+    <main>
+        <br>
+        <div class="section-1">
+            <div class="container  form-group required">
+                <form action='/trades' method = 'POST'>
+                    <div class="row mb-4" >
+                        <div class="col">
+                            <div class="form-outline">
+                                <label  class='control-label'  for="phone_company">Phone Company</label>
+                                <input type="text" id="phone_company" name="phone_company" placeholder="Phone Company" class="form-control" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-outline mb-4">
+                        <label  class='control-label' for="title">Phone Name</label>
+                        <input type="text" id="title" name="title" placeholder="Phone Name" class="form-control" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label  class='control-label' for="released_year">Released Year</label>
+                        <input type="text" id="released_year" name="released_year" placeholder="Released Year" class="form-control" />
+                        
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label  class='control-label' for="condition">Condition </label>
+                        <input type="text" id="condition" name="condition" placeholder="Phone Condition" class="form-control" />
+                        
+                    </div>
+
+                    <div class="form-outline mb-4">
+
+                        <label  class='control-label' for="content">Phone Information</label>
+                        <textarea class="form-control" id="content" name="content" placeholder="The details should have at least 10 characters" rows="4"></textarea>
+                        
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="img_url">Picture url:</label>
+                        <input type="text" id="img_url" name="img_url" placeholder="Online uploaded phone picture url" class="form-control" />
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+<%- include('../partials/footer.ejs')%>

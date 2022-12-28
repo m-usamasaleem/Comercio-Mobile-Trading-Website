@@ -1,0 +1,78 @@
+<%- include('../partials/header.ejs') %>
+<div class="main">
+    <div class="col-sm-8">
+
+
+        <% if(result==null){ %>
+            <tbody>
+
+            <td rowspan="2">
+                <form>
+                <button type="submit" class="btn btn-warning"  formmethod="POST" formaction="#">Offer/Item no longer available</button>
+            </form>
+        </tbody>
+            <% } 
+        
+
+            else {%>
+
+<% if(item){ %>
+    <br> <br>
+    <table class="table table-hover table-secondary">
+        <tbody>
+            <br>
+        
+            <tr>
+                
+            <td>  <%= result.tradeid.title%></td>
+            <td> <%= result.offerid.title%></td>
+            <td rowspan="2">
+                <form>
+                <button type="submit" class="btn btn-danger"  formmethod="POST" formaction="/trades/<%= result.tradeid.id%>/cancelOffer">Cancel offer</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="<%=result.tradeid.img_url %>" height="150" width="120"  alt="Not Found"  onerror=this.src="/images/noimage.png">
+        </td>
+        <td>
+            <img src="<%=result.offerid.img_url %>" height="150" width="120"  alt="Not Found"  onerror=this.src="/images/noimage.png">
+        </td>
+    </tr>
+        </tbody>
+    </table>
+    <% } else {%>
+        <table class="table table-warning">
+        <tbody>
+            <tr>
+            <td><%= result.tradeid.title%>
+                (giving product)
+            </td>
+
+            <td><%= result.offerid.title%>
+                            (getting in-return)
+
+            </td>
+            <td rowspan ="2">
+                <form>
+                <button type="submit" class="btn btn-success"  formmethod="POST" formaction="/trades/<%= result.tradeid.id%>/acceptOffer">Accept</button>
+                <button type="submit" class="btn btn-danger"  formmethod="POST" formaction="/trades/<%= result.tradeid.id%>/rejectOffer">Reject</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="<%=result.tradeid.img_url %>" height="150" width="120"  alt="Not Found"  onerror=this.src="/images/noimage.png">
+        </td>
+        <td>
+            <img src="<%=result.offerid.img_url %>" height="150" width="120"  alt="Not Found"  onerror=this.src="/images/noimage.png">
+        </td>
+    </tr>
+        </tbody>
+        </table>
+        <% } %>
+        <% } %>
+    </div>
+    </div>
+<%- include('../partials/footer.ejs') %>

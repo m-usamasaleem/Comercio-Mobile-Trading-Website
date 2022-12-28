@@ -1,0 +1,53 @@
+<%- include('../partials/header.ejs')%>
+
+<% if(user == item.host) { %>
+
+
+    <main>
+        <br>
+        <div class="section-1">
+            <div class="container form-group required">
+                <form action = '/trades/<%= item._id%>?_method=PUT' method = 'POST'>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class='control-label' for="phone_company">Phone Name</label>
+                                <input type="text" id="phone_company" name="phone_company" placeholder="phone_company" class="form-control" value="<%= item.phone_company %>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class='control-label' for="title">Phone Name</label>
+                        <input type="text" id="title" name="title" placeholder="Phone Name"    class="form-control" value="<%= item.title %>" />
+                        
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class='control-label' for="released_year">Released Year</label>
+                        <input type="text" id="released_year" name="released_year" placeholder="Phone Released Year" class="form-control" value="<%= item.released_year %>" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class='control-label' for="condition">Condition </label>
+                        <input type="text" id="condition" name="condition" placeholder="Phone Condition" class="form-control" value="<%= item.condition %>" />
+                        
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class='control-label' for="content">Phone Information</label>
+                        <textarea class="form-control" id="content" name="content" placeholder="Phone Information" rows="4"    ><%= item.content %></textarea>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="img_url">Current phone pictures url</label>
+                        <input type="text" id="img_url" name="img_url" placeholder="Phone Image URL" class="form-control" value="<%= item.img_url %>"/>
+                        
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <% } %>
+<%- include('../partials/footer.ejs')%>

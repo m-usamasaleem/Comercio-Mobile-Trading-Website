@@ -1,0 +1,43 @@
+
+<%- include('../partials/header.ejs')%>
+<div class="content"  style="margin: 50px auto;width: 95%;">
+    <div class="center-container mb-100 justify-content-center col-md-6">
+        <div class="event-heading">
+            <h3 class="dis-in-bl"><%=user.lastName%>'s Trades</h3>
+        </div>
+        <% if(trades.length){ %>
+            <table class="table table-hover">
+                <tr  class="thead-light ">
+                <th>Select</th>
+              <th>Phone Name</th>
+              <th>Phone Company</th>
+              <th>Status</th>
+            </tr>
+            <% trades.forEach(trade => { %>
+                <% if(trade.status === 'Available'){ %>
+            <tr>
+                <form >
+                <td> <input type="radio" name="item" id="item" value="<%= trade.id %>"></td>
+                <td><%= trade.title %></td>
+               
+                <td><%= trade.phone_company %></td>
+                
+                <td><%= trade.status %></td>
+                
+                <td>
+                    
+                </td>
+            </tr>
+            <% } %>
+            <% }); %>
+        </table>
+        
+            <br>
+            <button class="btn btn-danger" type="submit" formmethod="POST" formaction="/trades/<%=offeredId %>/tradeoffered">Trade</button>
+        </form>
+        <% } else { %>
+            <p style="margin: 20px auto;width: 95%;">There are no trades to display.</p>
+        <% } %>
+    </div>
+</div>
+<%- include('../partials/footer.ejs')%>
